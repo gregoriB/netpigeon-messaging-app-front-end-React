@@ -1,13 +1,13 @@
 import React from "react";
-import MessageTabs from "./MessageTabs";
-import NavComponent from "./NavComponent";
+import EmailTabs from "./EmailTabs";
+import Nav from "./Nav";
 
 const EmailsPage = () => {
   return (
-    <div>
-      <NavComponent />
-      <MessageTabs />
-    </div>
+    <>
+      <Nav />
+      <EmailTabs />
+    </>
   );
 };
 

@@ -1,30 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import Logo from "./Logo";
+
+const initialState = { username: "", password: "" };
 
 const LoginPage = ({ history }) => {
+  const [input, setInput] = useState(initialState);
+  const handleChange = e => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    });
+  };
   const handleSubmit = e => {
     e.preventDefault();
     history.push("/mail#inbox");
   };
   return (
-    <Form
-      style={{ maxWidth: "500px", margin: "0 auto" }}
-      onSubmit={handleSubmit}
-    >
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="username" placeholder="Enter Username" />
-      </Form.Group>
+    <div className="login-form-container">
+      <Form onSubmit={handleSubmit}>
+        <Logo />
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            name="username"
+            value={input.username}
+            type="username"
+            placeholder="Enter Username"
+            onChange={handleChange}
+          />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            name="password"
+            value={input.password}
+            type="password"
+            placeholder="Enter Password"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button className="btn-custom" variant="primary" type="submit">
+          Log In
+        </Button>
+      </Form>
+    </div>
   );
 };
 
