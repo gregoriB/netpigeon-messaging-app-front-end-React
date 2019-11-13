@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-const EmailModal = ({ header, show, onHide, children }) => {
+const MailModal = ({ header, show, onHide, children }) => {
     return (
         <Modal
             size="lg"
@@ -18,4 +18,4 @@ const EmailModal = ({ header, show, onHide, children }) => {
     );
 };
 
-export default EmailModal;
+export default MailModal;

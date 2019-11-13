@@ -1,8 +1,12 @@
 import React from "react";
 import SideBar from "./navigation/SideBar";
 import NavBar from "./navigation/NavBar";
+import { getCookieToken } from "../../helpers/functions";
 
-const EmailsPage = () => {
+export default ({ history }) => {
+    if (!getCookieToken()) {
+        history.push("/");
+    }
     return (
         <>
             <NavBar />
@@ -10,5 +14,3 @@ const EmailsPage = () => {
         </>
     );
 };
-
-export default EmailsPage;

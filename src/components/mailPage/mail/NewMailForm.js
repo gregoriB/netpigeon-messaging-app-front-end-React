@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
-const initialState = { email: "", subject: "", body: "" };
+const initialState = { receiver: "", title: "", body: "" };
 
-const NewEmailForm = () => {
+const NewMailForm = () => {
     const [input, setInput] = useState(initialState);
 
     const handleChange = e => {
@@ -18,10 +18,10 @@ const NewEmailForm = () => {
         <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Control
-                    type="email"
-                    placeholder="Recipient's Email Address"
-                    name="email"
-                    value={input.email}
+                    type="text"
+                    placeholder="Recipient"
+                    name="receiver"
+                    value={input.receiver}
                     onChange={handleChange}
                 />
             </Form.Group>
@@ -29,8 +29,8 @@ const NewEmailForm = () => {
                 <Form.Control
                     type="text"
                     placeholder="Subject"
-                    name="subject"
-                    value={input.subject}
+                    name="title"
+                    value={input.title}
                     onChange={handleChange}
                 />
             </Form.Group>
@@ -50,4 +50,4 @@ const NewEmailForm = () => {
     );
 };
 
-export default NewEmailForm;
+export default NewMailForm;

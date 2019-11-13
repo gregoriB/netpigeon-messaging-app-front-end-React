@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import LoginPage from "./components/loginPage";
-import EmailsPage from "./components/emailsPage";
+import MailPage from "./components/mailPage";
 
 const App = ({ history }) => {
+    // if (!getCookieToken()) {
+    //     history.push("/");
+    // } else {
+    //     history.push("/mail");
+    // }
     // const [token, setToken] = useState("");
     // useEffect(() => {
     //   const logIn = async () => {
@@ -83,7 +88,8 @@ const App = ({ history }) => {
     return (
         <Switch>
             <Route exact path="/" render={() => <LoginPage history={history} />} />
-            <Route path="/mail" component={EmailsPage} />
+            <Route path="/mail" render={() => <MailPage history={history} />} />
+            <Redirect from="*" to="/" />
         </Switch>
     );
 };
