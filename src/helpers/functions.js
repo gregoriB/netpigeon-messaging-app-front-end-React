@@ -22,7 +22,6 @@ export const getCookieToken = () => {
     if (start < 0) {
         return "";
     }
-
     let end = cookies.indexOf(";", start);
     end = end < 0 ? cookies.length : end;
     const token = cookies.slice(start, end);

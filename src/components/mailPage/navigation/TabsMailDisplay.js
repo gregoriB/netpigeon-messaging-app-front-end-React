@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Col, Tab } from "react-bootstrap";
 import AllCurrentMail from "../mailBox/AllCurentMail";
 
-const TabsMail = ({ retrieveMessages, currentMessages }) => {
+const TabsMailDisplay = ({ retrieveMessages, currentMessages }) => {
     return (
         <Col sm={10} className="emails">
             <Tab.Content>
@@ -26,9 +26,9 @@ const TabsMail = ({ retrieveMessages, currentMessages }) => {
     );
 };
 
-TabsMail.propTypes = {
+TabsMailDisplay.propTypes = {
     retrieveMessages: PropTypes.func.isRequired,
     currentMessages: PropTypes.array.isRequired
 };
 
-export default TabsMail;
+export default TabsMailDisplay;

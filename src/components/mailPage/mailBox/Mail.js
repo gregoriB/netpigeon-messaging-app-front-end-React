@@ -21,7 +21,6 @@ const Mail = ({ id, title, retrieveMessages, type }) => {
         const route = `messages/${id}/`;
         const options = buildFetchOptions(method);
         const result = await fetchFromServer(route, options);
-        retrieveMessages();
         return result;
     };
 
@@ -42,7 +41,10 @@ const Mail = ({ id, title, retrieveMessages, type }) => {
             </Modal>
             <Button
                 data-method="DELETE"
-                onClick={e => handleServerRequest(e)}
+                onClick={async e => {
+                    await handleServerRequest(e);
+                    retrieveMessages();
+                }}
                 title="Click to delete this email"
                 variant="outline-danger"
                 aria-label="Delete"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tab } from "react-bootstrap";
 import { fetchFromServer, buildFetchOptions, getCookieToken } from "../../../helpers/functions";
 import TabsSideBar from "./TabsSideBar";
-import TabsMail from "./TabsMail";
+import TabsMailDisplay from "./TabsMailDisplay";
 
 const Tabs = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +28,7 @@ const Tabs = () => {
                     isModalOpen={isModalOpen}
                     setIsModalOpen={setIsModalOpen}
                 />
-                <TabsMail retrieveMessages={retrieveMessages} currentMessages={currentMessages} />
+                <TabsMailDisplay retrieveMessages={retrieveMessages} currentMessages={currentMessages} />
             </Tab.Container>
         </div>
     );

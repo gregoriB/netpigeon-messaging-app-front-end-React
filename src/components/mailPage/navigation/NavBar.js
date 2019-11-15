@@ -5,7 +5,7 @@ import { updateCookie } from "../../../helpers/functions";
 import Logo from "../../misc/Logo";
 
 const NavBar = ({ history }) => {
-    //remove auth token from cookie and update it to expired time so browser removes it
+    //remove auth token from cookie and update it to an expired time so the browser removes it
     const logOut = () => {
         const cookie = "netPigeonToken=null";
         const expiredTime = 60 * -60;
