@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import ReactRouterPropTypes from "react-router-prop-types";
 import Logo from "../misc/Logo";
 import { fetchFromServer, updateCookie, buildFetchOptions } from "../../helpers/functions";
 
@@ -48,6 +49,7 @@ const LoginForm = ({ history }) => {
                         type="username"
                         placeholder="Enter Username"
                         onChange={handleChange}
+                        required
                     />
                 </Form.Group>
                 <Form.Group controlId="loginFormPassword">
@@ -58,14 +60,19 @@ const LoginForm = ({ history }) => {
                         type="password"
                         placeholder="Enter Password"
                         onChange={handleChange}
+                        required
                     />
                 </Form.Group>
-                <Button className="btn-custom" variant="primary" type="submit">
+                <Button className="btn-custom" variant="primary" type="submit" aria-label="Submit">
                     Log In
                 </Button>
             </Form>
         </div>
     );
+};
+
+LoginForm.propTypes = {
+    history: ReactRouterPropTypes.history.isRequired
 };
 
 export default LoginForm;

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
 import { ListGroup, Button } from "react-bootstrap";
 import Modal from "./Modal";
 import MailBody from "./MailBody";
@@ -14,7 +15,7 @@ const Mail = ({ id, title, retrieveMessages, type }) => {
         setIsModalOpen(true);
     };
 
-    //depending on which button is pressed, either retrieve or delete message
+    //depending on which button is pressed, either fetch or delete message
     const handleServerRequest = async e => {
         const { method } = e.target.dataset;
         const route = `messages/${id}/`;
@@ -44,11 +45,19 @@ const Mail = ({ id, title, retrieveMessages, type }) => {
                 onClick={e => handleServerRequest(e)}
                 title="Click to delete this email"
                 variant="outline-danger"
+                aria-label="Delete"
             >
                 X
             </Button>
         </ListGroup.Item>
     );
+};
+
+Mail.propTypes = {
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    retrieveMessages: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired
 };
 
 export default Mail;

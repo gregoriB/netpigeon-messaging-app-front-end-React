@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
 const MailModal = ({ header, show, onHide, children }) => {
@@ -16,6 +17,13 @@ const MailModal = ({ header, show, onHide, children }) => {
             <Modal.Body>{children}</Modal.Body>
         </Modal>
     );
+};
+
+MailModal.propTypes = {
+    header: PropTypes.string.isRequired,
+    show: PropTypes.bool.isRequired,
+    onHide: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired
 };
 
 export default MailModal;

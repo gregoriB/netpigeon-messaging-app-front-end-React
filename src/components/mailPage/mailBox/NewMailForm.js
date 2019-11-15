@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Form, Button } from "react-bootstrap";
 import { fetchFromServer, buildFetchOptions } from "../../../helpers/functions";
 
@@ -34,14 +35,16 @@ const NewMailForm = ({ onHide }) => {
                 name="receiver"
                 value={inputFields.receiver}
                 onChange={handleChange}
+                aria-label="Recipient"
                 required
             />
             <Form.Control
                 type="text"
-                placeholder="Subject"
+                placeholder="title"
                 name="title"
                 value={inputFields.title}
                 onChange={handleChange}
+                aria-label="Title"
                 required
             />
 
@@ -52,13 +55,23 @@ const NewMailForm = ({ onHide }) => {
                 placeholder="Add your message here"
                 value={inputFields.body}
                 onChange={handleChange}
+                aria-label="Body"
                 required
             />
-            <Button className="btn-send-email" type="submit" variant="outline-primary">
+            <Button
+                className="btn-send-email"
+                variant="outline-primary"
+                type="submit"
+                aria-label="Submit"
+            >
                 SEND
             </Button>
         </Form>
     );
+};
+
+NewMailForm.propTypes = {
+    onHide: PropTypes.func.isRequired
 };
 
 export default NewMailForm;

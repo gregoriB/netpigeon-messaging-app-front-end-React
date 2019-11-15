@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ListGroup } from "react-bootstrap";
 import Mail from "./Mail";
 
@@ -10,6 +11,12 @@ const AllCurrentMail = ({ currentMessages, type, retrieveMessages }) => {
     };
 
     return <ListGroup>{mapCurrentMessages()}</ListGroup>;
+};
+
+AllCurrentMail.propTypes = {
+    currentMessages: PropTypes.array.isRequired,
+    type: PropTypes.string.isRequired,
+    retrieveMessages: PropTypes.func.isRequired
 };
 
 export default AllCurrentMail;

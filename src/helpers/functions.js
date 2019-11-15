@@ -1,5 +1,5 @@
 export const fetchFromServer = async (route, options) => {
-    const url = `https://messaging-test.bixly.com/${route}`;
+    const url = `${process.env.REACT_APP_URL}/${route}`;
     try {
         const response = await fetch(url, options);
         const json = await response.json();

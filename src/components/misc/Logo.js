@@ -5,7 +5,13 @@ import birdIcon from "./birdIcon.svg";
 const Logo = () => {
     return (
         <Navbar.Brand>
-            <img alt="" src={birdIcon} width="30" height="30" className="d-inline-block align-top" />{" "}
+            <img
+                alt="flying pigeon"
+                src={birdIcon}
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+            />{" "}
             NetPigeon
         </Navbar.Brand>
     );

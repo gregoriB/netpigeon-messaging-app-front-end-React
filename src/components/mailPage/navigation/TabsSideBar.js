@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Col, ListGroup, Button } from "react-bootstrap";
 import Modal from "../mailBox/Modal";
 import NewMailForm from "../mailBox/NewMailForm";
@@ -15,6 +16,7 @@ const TabsSideBar = ({ retrieveMessages, isModalOpen, setIsModalOpen }) => {
                 className="btn-custom btn-compose-msg"
                 variant="secondary"
                 onClick={() => setIsModalOpen(true)}
+                aria-label="New message"
             >
                 NEW MESSAGE
             </Button>
@@ -23,6 +25,12 @@ const TabsSideBar = ({ retrieveMessages, isModalOpen, setIsModalOpen }) => {
             </Modal>
         </Col>
     );
+};
+
+TabsSideBar.propTypes = {
+    retrieveMessages: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
+    setIsModalOpen: PropTypes.func.isRequired
 };
 
 export default TabsSideBar;

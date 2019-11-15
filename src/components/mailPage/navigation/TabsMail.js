@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Col, Tab } from "react-bootstrap";
 import AllCurrentMail from "../mailBox/AllCurentMail";
 
@@ -23,6 +24,11 @@ const TabsMail = ({ retrieveMessages, currentMessages }) => {
             </Tab.Content>
         </Col>
     );
+};
+
+TabsMail.propTypes = {
+    retrieveMessages: PropTypes.func.isRequired,
+    currentMessages: PropTypes.array.isRequired
 };
 
 export default TabsMail;

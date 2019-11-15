@@ -1,34 +1,37 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
 const MailBody = ({ title, body, sent, sender, receiver, type }) => {
-    const handleToFromLine = () => {
-        const preposition = type === "sent" ? "To:" : "From:";
-        const subject = type === "sent" ? receiver : sender;
-        return (
-            <>
-                <span className="message-field">{preposition}</span>
-                {subject}
-            </>
-        );
-    };
     return (
         <>
             <div>
                 <p>
-                    <span className="message-field">Sent on:</span>
+                    <label className="message-field">Sent on:</label>
                     {new Date(sent).toLocaleString()}
                 </p>
-                <p>{handleToFromLine()}</p>
                 <p>
-                    <span className="message-field">Title:</span>
+                    <label className="message-field">{type === "sent" ? "To:" : "From:"}</label>
+                    {type === "sent" ? receiver : sender}
+                </p>
+                <p>
+                    <label className="message-field">Title:</label>
                     {title}
                 </p>
-                <p>{body}</p>
+                <p aria-label="Body">{body}</p>
             </div>
             <Modal.Footer />
         </>
     );
+};
+
+MailBody.propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string,
+    sent: PropTypes.string,
+    sender: PropTypes.string,
+    receiver: PropTypes.string,
+    type: PropTypes.string.isRequired
 };
 
 export default MailBody;
