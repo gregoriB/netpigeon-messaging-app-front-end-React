@@ -5,7 +5,8 @@ export const fetchFromServer = async (route, options) => {
         const json = await response.json();
         return json;
     } catch (error) {
-        console.error("error :", error);
+        alert(error);
+        console.error(error);
     }
 };
 
@@ -19,12 +20,11 @@ export const getCookieToken = () => {
     const cookies = document.cookie;
     const start = cookies.indexOf("netPigeonToken");
     if (start < 0) {
-        return;
+        return "";
     }
 
     let end = cookies.indexOf(";", start);
     end = end < 0 ? cookies.length : end;
     const token = cookies.slice(start, end);
-
     return token.split("=")[1];
 };

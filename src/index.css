@@ -91,6 +91,7 @@ body {
 
 .modal-body {
     padding: 2rem;
+    padding-top: 1rem;
 }
 
 #greeting {
@@ -99,6 +100,36 @@ body {
 
 .navbar {
     width: 100vw;
+}
+
+.modal .form-control {
+    margin: 20px auto;
+}
+
+.message-field {
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-right: 10px;
+}
+
+.message {
+    width: 100%;
+    cursor: pointer;
+    transition: 30ms;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    text-align: left;
+    margin-right: -4%;
+}
+
+div.list-group-item {
+    padding: 0;
+    transition: 50ms;
+}
+
+div.list-group-item:hover {
+    background-color: #f8f9fa;
 }
 
 @media (max-width: 900px) {

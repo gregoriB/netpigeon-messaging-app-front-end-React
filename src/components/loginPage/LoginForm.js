@@ -3,13 +3,13 @@ import { Form, Button } from "react-bootstrap";
 import Logo from "../misc/Logo";
 import { fetchFromServer, updateCookie } from "../../helpers/functions";
 
-const initialState = { username: "test", password: "test123!" };
+const initialState = { username: "", password: "" };
 
 const LoginForm = ({ history }) => {
-    const [input, setInput] = useState(initialState);
+    const [inputFields, setInputFields] = useState(initialState);
     const handleChange = e => {
-        setInput({
-            ...input,
+        setInputFields({
+            ...inputFields,
             [e.target.name]: e.target.value
         });
     };
@@ -26,7 +26,7 @@ const LoginForm = ({ history }) => {
         const route = "api-token-auth/";
         const options = {
             method: "POST",
-            body: JSON.stringify({ ...input }),
+            body: JSON.stringify({ ...inputFields }),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -35,7 +35,7 @@ const LoginForm = ({ history }) => {
         if (json.token) {
             logIn(json.token);
         } else {
-            console.log("login failed");
+            alert("Login failed.  Please double check your username and password.");
         }
     };
 
@@ -43,21 +43,21 @@ const LoginForm = ({ history }) => {
         <div className="login-form-container">
             <Form onSubmit={handleSubmit}>
                 <Logo />
-                <Form.Group controlId="formBasicUsername">
+                <Form.Group controlId="loginFormUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         name="username"
-                        value={input.username}
+                        value={inputFields.username}
                         type="username"
                         placeholder="Enter Username"
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group controlId="loginFormPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         name="password"
-                        value={input.password}
+                        value={inputFields.password}
                         type="password"
                         placeholder="Enter Password"
                         onChange={handleChange}

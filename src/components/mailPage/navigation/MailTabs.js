@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Tab, Col, ListGroup, Button } from "react-bootstrap";
-import AllMail from "../mail/AllMail";
-import NewMailForm from "../mail/NewMailForm";
-import Modal from "../mail/Modal";
+import AllMail from "../mailBox/AllMail";
+import NewMailForm from "../mailBox/NewMailForm";
+import Modal from "../mailBox/Modal";
 import { fetchFromServer, getCookieToken } from "../../../helpers/functions";
 
-const SideBar = () => {
+const MailTabs = () => {
     const [modalShow, setModalShow] = useState(false);
     const [currentMessages, setCurrentMessages] = useState([]);
 
@@ -38,7 +38,7 @@ const SideBar = () => {
                             action
                             href="#sent"
                             name="sent"
-                            onClick={() => getMessages("sent")}
+                            onClick={() => getMessages("sent/")}
                         >
                             Sent
                         </ListGroup.Item>
@@ -55,7 +55,7 @@ const SideBar = () => {
                         show={modalShow}
                         onHide={() => setModalShow(false)}
                     >
-                        <NewMailForm />
+                        <NewMailForm onHide={() => setModalShow(false)} />
                     </Modal>
                 </Col>
                 <Col sm={8} className="emails">
@@ -64,12 +64,12 @@ const SideBar = () => {
                             <AllMail
                                 getMessages={() => getMessages("")}
                                 currentMessages={currentMessages}
-                                type=""
+                                type="inbox"
                             />
                         </Tab.Pane>
                         <Tab.Pane eventKey="#sent">
                             <AllMail
-                                getMessages={() => getMessages("sent")}
+                                getMessages={() => getMessages("sent/")}
                                 currentMessages={currentMessages}
                                 type="sent"
                             />
@@ -81,4 +81,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default MailTabs;

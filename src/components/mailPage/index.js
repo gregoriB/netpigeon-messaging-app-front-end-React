@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "./navigation/SideBar";
+import MailTabs from "./navigation/MailTabs";
 import NavBar from "./navigation/NavBar";
 import { getCookieToken } from "../../helpers/functions";
 
@@ -10,7 +10,7 @@ export default ({ history }) => {
     return (
         <>
             <NavBar />
-            <SideBar />
+            <MailTabs />
         </>
     );
 };
