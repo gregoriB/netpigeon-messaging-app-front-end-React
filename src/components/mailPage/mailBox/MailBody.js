@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-const MailBody = ({ title, body, sent, sender, receiver, id, type }) => {
+const MailBody = ({ title, body, sent, sender, receiver, type }) => {
     const handleToFromLine = () => {
         const preposition = type === "sent" ? "To:" : "From:";
         const subject = type === "sent" ? receiver : sender;
@@ -15,10 +15,9 @@ const MailBody = ({ title, body, sent, sender, receiver, id, type }) => {
     return (
         <>
             <div>
-                {id}
                 <p>
                     <span className="message-field">Sent on:</span>
-                    {new Date(sent).toISOString().substring(0, 10)}
+                    {new Date(sent).toLocaleString()}
                 </p>
                 <p>{handleToFromLine()}</p>
                 <p>

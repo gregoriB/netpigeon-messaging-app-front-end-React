@@ -1,10 +1,10 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
 import { updateCookie } from "../../../helpers/functions";
 import Logo from "../../misc/Logo";
 
 const NavBar = ({ history }) => {
+    //remove auth token from cookie and update it to expired time so browser removes it
     const logOut = () => {
         const cookie = "netPigeonToken=null";
         const expiredTime = 60 * -60;
@@ -24,4 +24,4 @@ const NavBar = ({ history }) => {
     );
 };
 
-export default withRouter(NavBar);
+export default NavBar;

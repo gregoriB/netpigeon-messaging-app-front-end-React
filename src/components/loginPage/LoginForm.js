@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import Logo from "../misc/Logo";
-import { fetchFromServer, updateCookie } from "../../helpers/functions";
+import { fetchFromServer, updateCookie, buildFetchOptions } from "../../helpers/functions";
 
 const initialState = { username: "", password: "" };
 
 const LoginForm = ({ history }) => {
     const [inputFields, setInputFields] = useState(initialState);
+
     const handleChange = e => {
         setInputFields({
             ...inputFields,
@@ -14,6 +15,7 @@ const LoginForm = ({ history }) => {
         });
     };
 
+    //update auth token cookie after login
     const logIn = token => {
         const cookie = `netPigeonToken=${token};`;
         const oneHour = 60 * 60;
@@ -21,19 +23,14 @@ const LoginForm = ({ history }) => {
         history.push("/mail");
     };
 
+    // exchange credentials with server and utilize auth token if successful
     const handleSubmit = async e => {
         e.preventDefault();
         const route = "api-token-auth/";
-        const options = {
-            method: "POST",
-            body: JSON.stringify({ ...inputFields }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        };
-        const json = await fetchFromServer(route, options);
-        if (json.token) {
-            logIn(json.token);
+        const options = buildFetchOptions("POST", { ...inputFields });
+        const result = await fetchFromServer(route, options);
+        if (result.token) {
+            logIn(result.token);
         } else {
             alert("Login failed.  Please double check your username and password.");
         }

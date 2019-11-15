@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { fetchFromServer, getCookieToken } from "../../../helpers/functions";
+import { fetchFromServer, buildFetchOptions } from "../../../helpers/functions";
 
 const initialState = { receiver: "", title: "", body: "" };
 
-const NewMailForm = ({ onHide, history }) => {
+const NewMailForm = ({ onHide }) => {
     const [inputFields, setInputFields] = useState(initialState);
 
     const handleChange = e => {
@@ -17,19 +16,13 @@ const NewMailForm = ({ onHide, history }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = getCookieToken();
         const route = "messages/";
-        const options = {
-            method: "POST",
-            body: JSON.stringify({ ...inputFields }),
-            headers: { "Content-Type": "application/json", Authorization: `Token ${token}` }
-        };
+        const options = buildFetchOptions("POST", { ...inputFields });
         const result = await fetchFromServer(route, options);
-        if (result.data === "success") {
+        if (result && result.data === "success") {
             onHide();
         }
-        history.push("/mail");
-        // window.location.reload();
+        window.location.reload();
     };
 
     useEffect(() => {});
@@ -68,4 +61,4 @@ const NewMailForm = ({ onHide, history }) => {
     );
 };
 
-export default withRouter(NewMailForm);
+export default NewMailForm;

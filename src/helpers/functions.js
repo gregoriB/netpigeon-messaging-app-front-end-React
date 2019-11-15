@@ -28,3 +28,18 @@ export const getCookieToken = () => {
     const token = cookies.slice(start, end);
     return token.split("=")[1];
 };
+
+export const buildFetchOptions = (method, body) => {
+    const token = getCookieToken();
+    const options = {
+        method,
+        headers: { "Content-Type": "application/json" }
+    };
+    if (body) {
+        options.body = JSON.stringify(body);
+    }
+    if (token) {
+        options.headers["Authorization"] = `Token ${token}`;
+    }
+    return options;
+};
